@@ -9,26 +9,25 @@ class User
     end
     
     def age 
-      year = Date.today.year - date_of_birth.year
-      if Date.today.month >= date_of_birth.month && Date.today.day >= date_of_birth.day
-        return year 
-      else  
-        return year - 1
-      end
+      actual_date = Date.today
+      current_year = Date.today.year
+     p years = current_year - date_of_birth.year
+      ((actual_date.month > date_of_birth.month || (actual_date.month == date_of_birth.month && actual_date.day >= date_of_birth.day)) ? years : years -=1)
+      years
+
     end
     
     def next_birthday
-        next_year = Date.today.year + 1
-        if Date.today.month >= date_of_birth.month && Date.today.day >= date_of_birth.day
-          Date.new(next_year, date_of_birth.month, date_of_birth.day)
-        else  
-          Date.new(Date.today.year, date_of_birth.month, date_of_birth.day)
-        end
+      now = Date.today
+      year = Date.today.year 
+      ((now.month > date_of_birth.month || (now.month == date_of_birth.month && now.day >= date_of_birth.day)) ? year +=1 : year)
+      Date.new(year, date_of_birth.month, date_of_birth.day)
+
     end 
 end
 
 tests = [
-    Date.new(1986, 1, 1),
+    Date.new(1990, 11, 4),
     Date.new(1988, Date.today.month, Date.today.day),
     Date.new(1990, 12, 30),
     ]
